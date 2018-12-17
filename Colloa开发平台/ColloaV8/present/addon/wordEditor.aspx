@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="wordEditor.aspx.cs" Inherits="view.addon.wordEditor" %>

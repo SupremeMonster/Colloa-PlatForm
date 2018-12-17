@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<title>colloa calendar</title>
+<style type="text/css">
+a:hover{
+	color:#333;
+}
+a{
+	text-decoration:none;
+	color:#666;
+	display:block;
+}
+select{
+	font-family:tahoma,arial,verdana,sans-serif;
+	font-size:13px;
+}
+table{
+	font-family:tahoma,arial,verdana,sans-serif;
+	font-size:13px;
+	color:#454545;
+  text-align:center;
+}
+.calendar th{
+    background-color:#eee;
+}
+.calendar td{
+    border: #eee 1px solid;
+}
+</style>
+</head>
+
+<body oncontextmenu="return false;">
+
+<div style="float:left;margin:5 0 0 10;"><table class=calendar border=0 cellPadding=3 cellSpacing=1 style="table-layout:fixed;width:200px;">
+<tr><td><a href="javascript:returnTime('6:00');">6:00</a></td><td><a href="javascript:returnTime('6:30');">6:30</a></td><td><a href="javascript:returnTime('7:00');">7:00</a></td><td><a href="javascript:returnTime('7:30');">7:30</a></td></tr>
+<tr><td><a href="javascript:returnTime('8:00');">8:00</a></td><td><a href="javascript:returnTime('8:30');">8:30</a></td><td><a href="javascript:returnTime('9:00');">9:00</a></td><td><a href="javascript:returnTime('9:30');">9:30</a></td></tr>
+<tr><td><a href="javascript:returnTime('10:00');">10:00</a></td><td><a href="javascript:returnTime('10:30');">10:30</a></td><td><a href="javascript:returnTime('11:00');">11:00</a></td><td><a href="javascript:returnTime('11:30');">11:30</a></td></tr>
+<tr><td><a href="javascript:returnTime('12:00');">12:00</a></td><td><a href="javascript:returnTime('12:30');">12:30</a></td><td><a href="javascript:returnTime('13:00');">13:00</a></td><td><a href="javascript:returnTime('13:30');">13:30</a></td></tr>
+<tr><td><a href="javascript:returnTime('14:00');">14:00</a></td><td><a href="javascript:returnTime('14:30');">14:30</a></td><td><a href="javascript:returnTime('15:00');">15:00</a></td><td><a href="javascript:returnTime('15:30');">15:30</a></td></tr>
+<tr><td><a href="javascript:returnTime('16:00');">16:00</a></td><td><a href="javascript:returnTime('16:30');">16:30</a></td><td><a href="javascript:returnTime('17:00');">17:00</a></td><td><a href="javascript:returnTime('17:30');">17:30</a></td></tr>
+<tr><td><a href="javascript:returnTime('18:00');">18:00</a></td><td><a href="javascript:returnTime('18:30');">18:30</a></td><td><a href="javascript:returnTime('19:00');">19:00</a></td><td><a href="javascript:returnTime('19:30');">19:30</a></td></tr>
+<tr><td><a href="javascript:returnTime('20:00');">20:00</a></td><td><a href="javascript:returnTime('20:30');">20:30</a></td><td><a href="javascript:returnTime('21:00');">21:00</a></td><td><a href="javascript:returnTime('21:30');">21:30</a></td></tr>
+</table></div>
+
+<script language="javaScript">
+function returnTime(v) {
+    if (window.parent) {
+        if(parent._eLastActiveEvent) {
+            var e = parent._eLastActiveEvent.parentNode.lastChild;
+            if(e.tagName != "DIV") e = e.previousSibling;
+            e.innerHTML = v;
+        }
+        if (parent._eLastActiveSource) {
+            parent._eLastActiveSource.style.display = "none";
+            parent._eLastActiveSource = null;
+        }
+    }
+}
+</script>
+
+</body>
+</html>

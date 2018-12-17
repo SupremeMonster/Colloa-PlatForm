@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ckeUpload.aspx.cs" Inherits="view.view.ckeUpload" %>

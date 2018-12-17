@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" validateRequest="false" AutoEventWireup="true" CodeBehind="invoke.aspx.cs" Inherits="view.view.invoke" %>

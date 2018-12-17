@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" validateRequest="false" AutoEventWireup="true" CodeBehind="workflowBatch.aspx.cs" Inherits="view.view.workflowBatch" %>

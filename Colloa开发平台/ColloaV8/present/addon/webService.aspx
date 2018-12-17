@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" validateRequest="false" AutoEventWireup="true" CodeBehind="webService.aspx.cs" Inherits="view.addon.webService" %>

@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" validateRequest="false" AutoEventWireup="true" CodeBehind="formToSelectResponsor.aspx.cs" Inherits="view.view.formToSelectResponsor" %>

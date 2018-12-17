@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="finder1.aspx.cs" Inherits="view.view.finder1" %>

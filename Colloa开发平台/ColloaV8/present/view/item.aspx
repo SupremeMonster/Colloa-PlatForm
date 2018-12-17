@@ -1,0 +1,1 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="item.aspx.cs" Inherits="view.view.item" %>

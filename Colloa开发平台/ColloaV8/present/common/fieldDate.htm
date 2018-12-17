@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<title>colloa calendar</title>
+<style type="text/css">
+a:hover{
+	color:#333;
+}
+a{
+	text-decoration:none;
+	color:#666;
+	display:block;
+}
+select{
+	font-family:tahoma,arial,verdana,sans-serif;
+	font-size:13px;
+}
+table{
+	font-family:tahoma,arial,verdana,sans-serif;
+	font-size:13px;
+	color:#454545;
+  text-align:center;
+}
+.calendar th{
+    background-color:#eee;
+}
+.calendar td{
+    border: #eee 1px solid;
+}
+</style>
+</head>
+
+<body oncontextmenu="return false;"><table align=center border=0 style="table-layout:fixed;width:280px;"><col width=40><col width=200><col width=40>
+<tr><td><a href="javascript:navigateMonth(-1);">&laquo;</a></td><td id=vYearMonth></td><td><a href="javascript:navigateMonth(1);">&raquo;</a></td></tr></table>
+
+<table class=calendar align=center border=0 cellPadding=2 cellSpacing=1 style="table-layout:fixed;width:280px;">
+<tr><th id=w></th><th id=w></th><th id=w></th><th id=w></th><th id=w></th><th id=w></th><th id=w></th></tr>
+<tr><td id=d></td><td id=d></td><td id=d></td><td id=d></td><td id=d></td><td id=d></td><td id=d></td></tr>
+<tr><td id=d></td><td id=d></td><td id=d></td><td id=d></td><td id=d></td><td id=d></td><td id=d></td></tr>
+<tr><td id=d></td><td id=d></td><td id=d></td><td id=d></td><td id=d></td><td id=d></td><td id=d></td></tr>
+<tr><td id=d></td><td id=d></td><td id=d></td><td id=d></td><td id=d></td><td id=d></td><td id=d></td></tr>
+<tr><td id=d></td><td id=d></td><td id=d></td><td id=d></td><td id=d></td><td id=d></td><td id=d></td></tr>
+<tr><td id=d></td><td id=d></td><td id=d></td><td id=d></td><td id=d></td><td id=d></td><td id=d></td></tr>
+</table>
+
+<script language="javaScript">
+var sLang=(parent&&parent._sLang)?parent._sLang:"cn";
+
+var vWeekArray,vMonthArray,vYearArray;
+if(sLang=="cn" || sLang=="tc")
+{
+    vWeekArray=["日","一","二","三","四","五","六"];
+    vMonthArray=["一月","二月","三月","四月","五月","六月","七月","八月","九月","十月","十一月","十二月"];
+    vYearArray="年";
+}
+else
+{
+    vWeekArray=["S","M","T","W","T","F","S"];
+    vMonthArray=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    vYearArray="";
+}    
+
+//To be enhanced to initilize the year, month and day with arguments
+var vInitYear=new Date().getFullYear();
+var vInitMonth=new Date().getMonth()+1;
+var vInitDay=new Date().getDate();
+
+buildYearMonthWeekArray(vInitYear,vInitMonth);
+var vYear=document.getElementById('vYear');
+var vMonth=document.getElementById('vMonth');
+var vDayArray=[];
+var vInitDayIndex=0;
+refreshDisplay();
+
+function buildYearMonthWeekArray(y,m)
+{
+	var s;
+  if(sLang=="cn" || sLang=="tc")
+	{
+      s="<select id=vYear onchange='refreshDisplay()'>";
+      for(var i=(y-85);i<y;i++) s+="<option value="+i+">"+i+vYearArray+"</option>";
+      s+="<option selected value="+y+">"+y+vYearArray+"</option>";
+      for(var i=(y+1);i<(y+15);i++) s+="<option value="+i+">"+i+vYearArray+"</option>";
+      s+="</select><select id=vMonth onchange='refreshDisplay()'>";
+      for(var i=1;i<m;i++) s+="<option value="+i+">"+vMonthArray[i-1]+"</option>";
+      s+="<option selected value="+m+">"+vMonthArray[m-1]+"</option>";
+      for(var i=(m+1);i<13;i++) s+="<option value="+i+">"+vMonthArray[i-1]+"</option>";
+      s+="</select>";
+  }
+  else
+  {
+      s="<select id=vMonth onchange='refreshDisplay()'>";
+      for(var i=1;i<m;i++) s+="<option value="+i+">"+vMonthArray[i-1]+"</option>";
+      s+="<option selected value="+m+">"+vMonthArray[m-1]+"</option>";
+      for(var i=(m+1);i<13;i++) s+="<option value="+i+">"+vMonthArray[i-1]+"</option>";
+      s+="</select><select id=vYear onchange='refreshDisplay()'>";
+      for(var i=(y-85);i<y;i++) s+="<option value="+i+">"+i+vYearArray+"</option>";
+      s+="<option selected value="+y+">"+y+vYearArray+"</option>";
+      for(var i=(y+1);i<(y+15);i++) s+="<option value="+i+">"+i+vYearArray+"</option>";
+      s+="</select>";
+  }
+	document.getElementById('vYearMonth').innerHTML=s;
+	var vWeeks = document.all('w');
+	for(var i=0;i<7;i++) vWeeks[i].innerHTML=vWeekArray[i];
+}
+function buildDayArray(y,m)
+{
+	var d1=new Date(y,m,0).getDate();
+	var d2=new Date(y,m-1,1).getDay();
+	for(var i=0;i<42;i++) vDayArray[i]="";
+	vInitDayIndex=d1+d2-1;
+	for(var i=0;i<d1;i++)
+	{
+		if((i+1)==vInitDay) vInitDayIndex=i+d2;
+		vDayArray[i+d2]=i+1;
+	}
+}
+function navigateMonth(count)
+{
+	if(count==-1)
+	{
+		if(vMonth.selectedIndex==0)
+		{
+			if(vYear.selectedIndex==0) return;
+			vMonth.options[vMonth.options.length-1].selected=true;
+			vYear.options[vYear.selectedIndex-1].selected=true;
+		}
+		else vMonth.options[vMonth.selectedIndex-1].selected=true;
+	}
+	else if(count==1)
+	{
+		if(vMonth.selectedIndex==vMonth.options.length-1)
+		{
+			if(vYear.selectedIndex==vYear.options.length-1) return;
+			vMonth.options[0].selected=true;
+			vYear.options[vYear.selectedIndex+1].selected=true;
+		}
+		else vMonth.options[vMonth.selectedIndex+1].selected=true;
+	}
+	refreshDisplay();
+}
+function refreshDisplay()
+{
+	var vDays = document.all('d');
+	vDays[vInitDayIndex].bgColor = "";
+	buildDayArray(vYear.value, vMonth.value);
+	for(var i=0;i<42;i++) vDays[i].innerHTML=vDayArray[i]?"<a href='javascript:returnValue("+vDayArray[i]+");'>"+vDayArray[i]+"</a>":"";
+	vDays[vInitDayIndex].bgColor="#eeeeee";
+}
+function returnValue(v)
+{
+    if (window.parent) {
+        if(parent._eLastActiveEvent) {
+            var e = parent._eLastActiveEvent.parentNode.lastChild;
+			if(e.tagName != "DIV") e = e.previousSibling;
+			e.innerHTML = vYear.value + "/" + vMonth.value + "/" + v;
+        }
+        if (parent._eLastActiveSource) {
+            parent._eLastActiveSource.style.display = "none";
+            parent._eLastActiveSource = null;
+        }
+    }
+}
+</script>
+
+</body>
+</html>

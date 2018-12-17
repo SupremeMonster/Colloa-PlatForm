@@ -1,0 +1,103 @@
+﻿<!DOCTYPE html>
+<html><head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>readme - Colloa</title>
+  <style type="text/css">
+      body {font-size:14px;line-height:2.0;}
+      h2 {color:steelblue;margin:0;}
+      a {color:steelblue;text-decoration:none;}
+  </style>
+</head>
+<body><br><table align=center style="width:80%;" border=0><tr><td>
+
+<h1>Colloa 自述文件</h1>
+欢迎使用 Colloa 软件系统。
+<br>由于采用了Browser/Server计算结构，您必须具有一台服务器设备和多台用户端设备，并通过TCP/IP网络相互连接，才能够安装和使用 Colloa系统。
+<br>有关最新信息，请访问我们的官方网站 <a href="http://cn.colloa.com" target=_blank>http://cn.colloa.com</a> 。<br>
+
+<br><hr size=1 /><br>
+<h2>在 windows 2012（64位）服务器上安装</h2>
+<h3>安装准备</h3>
+<ul><li>系统运行需要 windows 2012（64位）操作系统。请以 系统管理员 身份登录 Windows 2012 操作系统。</li>
+<li>系统运行需要 web服务器（IIS）角色。</li>
+    <ul><li>如果 windows 2012 上并未配置 web服务器（IIS）角色，请通过 服务器管理器\添加角色和功能\基于角色和功能安装 添加 web服务器（IIS）角色，并包括 ISAPI扩展和筛选器、ASP.NET4.5和.NET Extensibility4.5。</li></ul>
+</ul>
+
+<h3>系统安装</h3>
+<ul><li>复制 ColloaV8 整个文件夹到指定的目录，该目录也称为 ColloaV8安装目录 。</li>
+<li>双击运行 ColloaV8安装目录\server\install.bat ，注册核心程序组件。</li>
+<li>设置 ColloaV8安装目录\server\data 整个文件夹（及其下属文件和文件夹）的安全属性，添加 NETWORK SERVICE 账户具有完全控制的权限。</li>
+<li>运行 IIS管理器，在 默认站点 下添加应用程序，别名为 colloa ，应用程序池为 ASP.NET v4.0，路径为 ColloaV8安装目录\present。</li>
+<li>点击打开 ASP.NET v4.0 应用程序池的 高级设置，将 (常规)\启用32位应用程序 设置为 True，将 回收\固定时间间隔 设置为 0，将 进程模型\标识 设置为 NetworkService。</li>
+<li>双击打开 本机IIS的 ISAPI和CGI限制，允许 ASP.NET v4.0.30319 。</li>
+<li>打开 Internet Explorer浏览器，在地址栏里输入 http://127.0.0.1/colloa ，显示登录页面，则表示安装成功。请输入用户名 sa 登录系统，初始口令是 system 。如果点击登录系统而界面没有任何反应，请通过 windows服务器管理器 禁用 Internet Explorer增强的安全配置，然后再试。</li>
+<li>附件上传大小限制调整：在colloa站点双击"请求筛选"——"编辑功能设置"——"允许最大内容长度"——调整大小即可。
+</li>
+</ul>
+
+<br><hr size=1 /><br>
+<h2>在 windows 2008（32位/64位）服务器上安装</h2>
+
+<h3>安装准备</h3>
+<ul><li>系统运行需要 windows 2008（32位/64位）操作系统。请以 系统管理员 身份登录 Windows 2008 操作系统。</li>
+<li>系统运行需要 web服务器（IIS）角色。</li>
+    <ul><li>如果 windows 2008 上并未配置 web服务器（IIS）角色，请通过 控制面板\管理工具\服务器管理器 添加 web服务器（IIS）角色，并包括 ASP.NET、ISAPI扩展和ISAPI筛选器。</li></ul>
+<li>系统运行需要 .net 4.0 framework 。</li>
+    <ul><li>如果 windows 2008 上并未安装 .net 4.0 framework ，请<a href="http://cn.colloa.com/download/dotNet4.rar">点击此处</a>下载并解压缩后，双击运行 dotNetFx40_Full_x86_x64.exe 。</li></ul>
+</ul>
+
+<h3>系统安装</h3>
+<ul><li>复制 ColloaV8 整个文件夹到指定的目录，该目录也称为 ColloaV8安装目录 。</li>
+<li>双击运行 ColloaV8安装目录\server\install.bat ，注册核心程序组件。</li>
+<li>设置 ColloaV8安装目录\server\data 整个文件夹（及其下属文件和文件夹）的安全属性，添加 NETWORK SERVICE 账户具有完全控制的权限。</li>
+<li>运行 IIS管理器，在 默认站点 下添加应用程序，别名为 colloa ，应用程序池为 ASP.NET v4.0，路径为 ColloaV8安装目录\present。</li>
+<li>点击打开 ASP.NET v4.0 应用程序池的 高级设置，将 回收\固定时间间隔 设置为 0，将 进程模型\标识 设置为 NetworkService。</li>
+<li>如果 windows 2008 是64位版本，请点击打开 ASP.NET v4.0 应用程序池的 高级设置，将 启用32位应用程序 设置为 True 。</li>
+<li>双击打开 本机IIS的 ISAPI和CGI限制，允许 ASP.NET v4.0.30319 。</li>
+<li>打开 Internet Explorer浏览器，在地址栏里输入 http://127.0.0.1/colloa ，显示登录页面，则表示安装成功。请输入用户名 sa 登录系统，初始口令是 system 。如果点击登录系统而界面没有任何反应，请通过 windows服务器管理器 禁用 Internet Explorer增强的安全配置，然后再试。</li>
+<li>附件上传大小限制调整：在colloa站点双击"请求筛选"——"编辑功能设置"——"允许最大内容长度"——调整大小即可。
+</li>
+</ul>
+
+<br><hr size=1 /><br>
+<h2>在 windows 2003 sp2（32位/64位）服务器上安装</h2>
+
+<h3>安装准备</h3>
+<ul><li>系统运行需要 windows 2003 sp2（32位/64位）操作系统。请以 系统管理员 身份登录 Windows 2003 操作系统。</li>
+<li>系统运行需要 Internet 信息服务（IIS）。</li>
+    <ul><li>如果 windows 2003 上并未安装 IIS ，请通过 控制面板 安装 Windows 2003 自带的 Internet信息服务（IIS）。</li></ul>
+<li>系统运行需要 .net 4.0 framework 。</li>
+    <ul><li>如果 windows 2003 上并未安装 .net 4.0 framework ，请<a href="http://cn.colloa.com/download/dotNet4.rar">点击此处</a>下载并解压缩后，双击运行 dotNetFx40_Full_x86_x64.exe 。</li>
+    <li>如果提示需要安装 wic_x86_chs.exe 或 wic_x64_chs.exe ，请首先双击运行 wic_x86_chs.exe 或 wic_x64_chs.exe ，然后再运行 dotNetFx40_Full_x86_x64.exe 。</li></ul>
+</ul>
+
+<h3>系统安装</h3>
+<ul><li>复制 ColloaV8 整个文件夹到指定的目录，该目录也称为 ColloaV8安装目录 。</li>
+<li>双击运行 ColloaV8安装目录\server\install.bat ，注册核心程序组件。</li>
+<li>设置 ColloaV8安装目录\server\data 整个文件夹（及其下属文件和文件夹）的安全属性，添加 NETWORK SERVICE 账户具有完全控制的权限。</li>
+<li>运行 IIS管理器，在 默认站点 下新建虚拟目录，别名为 colloa ，路径为 ColloaV8安装目录\present ，允许 读取和执行 权限。</li>
+<li>如果 windows 2003 是32位版本，请设置 colloa虚拟目录 属性，其 ASP.NET version 为 4.0.30319 ；并设置 IIS管理器的 web服务扩展，允许 ASP.NET 4.0.30319 。</li>
+<li>如果 windows 2003 是64位版本，请对 IIS 和 .net 4.0 framework 进行32位兼容性设置 。</li>
+	<ul><li>停止 W3SVC（World Wide Web Publishing Service）和 IISADMIN（IIS Admin Service）服务</li>
+	<li>运行命令提示符 ，依次执行下面三行代码</li>
+		<ul><li>C:\WINDOWS\MICROSOFT.NET\FRAMEWORK64\v4.0.30319\ASPNET_REGIIS.EXE –U</li>
+		<li>CSCRIPT C:\INETPUB\ADMINSCRIPTS\ADSUTIL.VBS SET W3SVC/APPPOOLS/ENABLE32BITAPPONWIN64 1</li>
+		<li>C:\WINDOWS\MICROSOFT.NET\FRAMEWORK\v4.0.30319\ASPNET_REGIIS.EXE -R</li></ul>
+	<li>重新启动 W3SVC（World Wide Web Publishing Service）和 IISADMIN（IIS Admin Service）服务</li>
+  <li>设置 IIS管理器的 web服务扩展，允许 ASP.NET 4.0.30319（32-bit）</li>
+	</ul>
+<li>打开 Internet Explorer浏览器，在地址栏里输入 http://127.0.0.1/colloa ，显示登录页面，则表示安装成功。请输入用户名 sa 登录系统，初始口令是 system 。如果点击登录系统而界面没有任何反应，请通过 windows服务器管理器 禁用 Internet Explorer增强的安全配置，然后再试。</li>
+<li>附件上传大小限制调整：在colloa站点双击"请求筛选"——"编辑功能设置"——"允许最大内容长度"——调整大小即可。
+</li>
+</ul>
+
+<br><hr size=1 /><br>
+<h2>从用户端访问</h2>
+<ul><li>打开 Internet Explorer浏览器，在地址栏里输入 http://服务器IP地址/colloa ，显示登录页面。如果不能正确显示登录页面，请检查网络是否连接正常，然后检查服务器防火墙或杀毒软件是否阻止了web服务和80端口。</li>
+<li>请输入用户名和口令登录系统。除了系统内置的 sa 之外，其他用户通常都是由 sa 创建的，用户名可以为汉字姓名，默认初始口令为 000000 ，状态应该为 有效。如果用户第一次登录系统，则必须前往 个人设置 模块，修改自己的初始口令。</li>
+</ul>
+
+<br><hr size=1 /><br>
+<div align=center>版权所有&copy;2017，二进制软件有限公司</div>
+
+</td></tr></table><br></body></html>

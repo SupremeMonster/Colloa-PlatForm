@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Files Uploading</title>
+</head>
+<body oncontextmenu="return false;" scroll=no>
+<form method="post" enctype="multipart/form-data" style="margin:0px">
+<input type="file" multiple name="file1" style="font-size:13px;width:70%;display1:inline;" onchange="upload(this);" /> <span id="inform"></span>
+</form>
+<script type="text/javaScript" language="javaScript">
+//if(location.href.indexOf('remove')>0) display a button of Remove
+var sOnAter = "", nOnAfter = location.href.indexOf("onAfter=");
+if(nOnAfter) sOnAfter = "parent."+location.href.substr(nOnAfter+8);
+function upload(o) {
+  var s = o.value;
+  if(s.length == 0) return;
+  //var sType = get type of file from location.href;
+  //if(sType.length > 0) {
+  //  if(failed to check type of files one by one) {alert("invalid type of file"); return;}
+  //}
+  var formData = new FormData(document.forms[0]);
+  var xmlHttpRequest = new XMLHttpRequest();
+  xmlHttpRequest.upload.onprogress = function (evt) {
+    if (evt.lengthComputable) {
+      document.getElementById("inform").innerHTML = "("+Math.round(evt.loaded*100/evt.total)+"%)";
+    }
+  };
+  xmlHttpRequest.onreadystatechange = function () {
+    if (xmlHttpRequest.readyState == 4) {
+      var sRes = xmlHttpRequest.responseText;
+      if (xmlHttpRequest.status == 200) {
+        if(sRes.indexOf("parent.") == 0) eval(sRes+sOnAfter);
+        else alert(sRes);
+      }
+      else alert(sRes);
+      document.getElementById("inform").innerHTML = "";
+      o.value = "";
+    }
+  }
+  xmlHttpRequest.open("POST", location.href.replace("fieldFile.htm","fieldFile.ashx")+"&"+Math.random(), true);
+  xmlHttpRequest.send(formData);
+}
+</script>
+</body>
+</html>
